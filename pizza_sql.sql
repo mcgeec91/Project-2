@@ -1,0 +1,8 @@
+#DROP DATABASE IF EXISTS PIZZA_DB;
+#CREATE DATABASE PIZZA_DB;
+USE PIZZA_DB;
+
+-- create tables 
+DROP TABLE pizza;
+SELECT * FROM pizza_db.8358pizza;
+RENAME TABLE 8358pizza TO pizza;
