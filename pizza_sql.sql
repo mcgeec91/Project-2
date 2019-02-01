@@ -6,3 +6,4 @@ USE PIZZA_DB;
 DROP TABLE pizza;
 SELECT * FROM pizza_db.8358pizza;
 RENAME TABLE 8358pizza TO pizza;
+SELECT * FROM pizza_db.pizza;
