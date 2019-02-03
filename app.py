@@ -15,7 +15,7 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 # Database Setup
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://username:password@server/db" #"sqlite:///db/bellybutton.sqlite" 
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root:password@localhost:3306/pizza_db"  
 
 # Init db
 db = SQLAlchemy(app)
@@ -27,15 +27,23 @@ Base = automap_base()
 Base.prepare(db.engine, reflect=True)
 
 # Save reference to the table
-Pizza = Base.classes.pizza 
+Pizza = Base.classes.keys()
 
 # Flask Routes
 @app.route("/")
 def index():
-    """Return the homepage."""
+    """Home page of site"""
     return render_template("index.html")
 
+@app.route("/Locations")
+def Maps(): 
+    """ Location Maps"""
+    return render_template("Maps.html")
 
+@app.route("/data")
+def data(): 
+    """ data page"""
+    return render_template("data.html")
 
 
 # Run Server
