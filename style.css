@@ -1,7 +1,7 @@
 
 /* Giving the body the specified background color, adding font sizes for the h1 and h3 elements we'll be using */
 body {
-    background: url('https://c.stocksy.com/a/PWH700/z9/1735653.jpg');
+    background: url('https://cdn.hipwallpaper.com/i/27/44/MH83cB.jpg');
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
@@ -12,7 +12,7 @@ body {
 }
   
  /* Giving our navbar some padding and a background color */
-  navbar {
+  .navbar-header {
     background: white;
   }
 
@@ -20,6 +20,13 @@ body {
     text-align: center;
     font-size: x-large;
     font-weight: bold;
+  }
+
+  .nav, .navbar-nav {
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+    color: red;
   }
 
   .container {
@@ -35,15 +42,26 @@ body {
     width: 25%;
 
   }
-  
+
+  #nav ul {
+    display: inline-block;
+    list-style-type: none;
+}
+
+  .navbar-brand {
+    padding: 8px;
+    height: 70px;
+  }
+
+
   /* Centering our h1 tag inside our header, giving it a little padding, removing its margin */
    h1 {
-    color:green;
+    color: red;
     text-align: left;
   }
 
   p {
-    color:green;
+    color: green;
     text-align: center;
     font-size: large;
     font-weight: bold;
@@ -65,7 +83,7 @@ body {
     }
     .navbar-collapse {
         border-top: 1px solid transparent;
-        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+        box-shadow: inset 0 1px 0 rgb(255, 255, 255);
         
     }
     .navbar-fixed-top {
@@ -77,16 +95,18 @@ body {
         display: none!important;
     }
     .navbar-nav {
-        float: none!important;
-        margin-top: 7.5px;
+        position: absolute;
+        left: 50%;
+        transform: translatex(-50%);
     }
     .navbar-nav>li {
         float: none;
-        background: green;
+        background: red;
 
     }
     
     .collapse.in{
         display:block !important;
+
     }
 }
