@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 import sqlalchemy as sql
 import sqlalchemy
-from sqlalchemy.ext.automap import automap_base
+
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine
 
@@ -20,11 +20,14 @@ sys.path.append("static/css")
 connect_string = f"mysql://{dbuser}:{dbpasswd}@{dburi}:{dbport}/{dbname}"
 sql_engine = sql.create_engine(connect_string)
 
-session = Session(sql_engine)
+# session = Session(sql_engine)
 
  # Use Pandas to perform the sql query
 query = "select * from pizza"
-dataFrame = pd.read_sql_query(query, sql_engine)
+pizza_sql = pd.read_sql_query(query, sql_engine)
+
+# Convert to DataFrame
+pizza_df = pd.DataFrame(pizza_sql)
 
 # Init app
 app = Flask(__name__)
@@ -48,13 +51,13 @@ def data():
 @app.route("/api/v1.0/Locations")
 def locations():
     """json of all lat/long in dataset"""
-    location = session.query(locations.latitude, locations.longitude).all()
+    location = pizza_df.query(locations.latitude, locations.longitude).all()
     return jsonify(location)
 
 @app.route("/api/v1.0/data")
 def Data():
     """json of all data in dataset"""
-    data = session.query(Data.all())
+    data = pizza_df.query()
     return jsonify(data)
 
 # Run Server
