@@ -16,14 +16,9 @@ import sys
 sys.path.append("static/js")
 sys.path.append("static/css")
 
-<<<<<<< HEAD
 # Create an engine for the database
 connect_string = f"mysql://{dbuser}:{dbpasswd}@{dburi}:{dbport}/{dbname}"
 sql_engine = sql.create_engine(connect_string)
-=======
-# Database Setup
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root:password<32j4l0s@localhost:3306/pizza_db"  
->>>>>>> 6fa7571cc99de1b94008be729f6cfa83d1e954bd
 
 session = Session(sql_engine)
 
