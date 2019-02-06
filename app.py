@@ -38,10 +38,10 @@ def index():
     """Home page of site"""
     return render_template("index.html")
 
-@app.route("/Maps")
+@app.route("/Map")
 def Maps(): 
     """ Location Maps"""
-    return render_template("Maps.html")
+    return render_template("map.html")
 
 @app.route("/data")
 def data(): 
