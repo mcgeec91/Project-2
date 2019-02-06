@@ -51,14 +51,14 @@ def data():
 @app.route("/api/v1.0/Locations")
 def locations():
     """json of all lat/long in dataset"""
-    location = pizza_df.query(locations.latitude, locations.longitude).all()
+    location = pizza_df.iloc[:,6:8].to_json()
     return jsonify(location)
 
 @app.route("/api/v1.0/data")
 def Data():
     """json of all data in dataset"""
-    data = pizza_df.query()
-    return jsonify(data)
+    data = pizza_df.to_json(orient='columns')
+    return data
 
 # Run Server
 if __name__ == "__main__":
