@@ -15,7 +15,7 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 # Database Setup
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root:password@localhost:3306/pizza_db"  
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root:password<32j4l0s@localhost:3306/pizza_db"  
 
 # Init db
 db = SQLAlchemy(app)
