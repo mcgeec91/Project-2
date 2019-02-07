@@ -26,8 +26,16 @@ body {
     text-align: center;
     font-size: large;
     font-weight: bold;
-    color: red;
+    padding: 8px;
   }
+
+  .nav.navbar-nav li a {
+    color: black !important; 
+}
+
+  .nav.navbar-nav li a:hover { 
+    color: red !important;
+}
 
   .container {
     background: white;

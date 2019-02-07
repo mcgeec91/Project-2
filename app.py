@@ -10,14 +10,14 @@ from sqlalchemy import create_engine
 
 from flask import Flask, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
-from config import dbuser, dbpasswd, dburi, dbport, dbname
+from config import dbuser, dbpasswd, dbhost, dbport, dbname
 
 import sys
 sys.path.append("static/js")
 sys.path.append("static/css")
 
 # Create an engine for the database
-connect_string = f"mysql://{dbuser}:{dbpasswd}@{dburi}:{dbport}/{dbname}"
+connect_string = f"mysql://{dbuser}:{dbpasswd}@{dbhost}:{dbport}/{dbname}"
 sql_engine = sql.create_engine(connect_string)
 
 # session = Session(sql_engine)
@@ -48,11 +48,21 @@ def data():
     """ data page"""
     return render_template("data.html")
 
+@app.route("/newyork")
+def NewYork(): 
+    """ New York Map"""
+    return render_template("newyork.html")
+
+@app.route("/chicago")
+def Chicago(): 
+    """ Chicago Map"""
+    return render_template("chicago.html")
+
 @app.route("/api/v1.0/Locations")
 def locations():
     """json of all lat/long in dataset"""
-    location = pizza_df.iloc[:,6:8].to_json()
-    return jsonify(location)
+    location = pizza_df.iloc[:,:].to_json(orient="split")
+    return (location)
 
 @app.route("/api/v1.0/data")
 def Data():
