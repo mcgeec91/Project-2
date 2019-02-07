@@ -10,14 +10,18 @@ from sqlalchemy import create_engine
 
 from flask import Flask, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
-from config import dbuser, dbpasswd, dbhost, dbport, dbname
+from config import dbuser, dbpasswd, dburi, dbport, dbname
 
 import sys
 sys.path.append("static/js")
 sys.path.append("static/css")
 
+import folium
+from folium import plugins
+from folium.plugins import HeatMap
+
 # Create an engine for the database
-connect_string = f"mysql://{dbuser}:{dbpasswd}@{dbhost}:{dbport}/{dbname}"
+connect_string = f"mysql://{dbuser}:{dbpasswd}@{dburi}:{dbport}/{dbname}"
 sql_engine = sql.create_engine(connect_string)
 
 # session = Session(sql_engine)
@@ -69,6 +73,30 @@ def Data():
     """json of all data in dataset"""
     data = pizza_df.to_json(orient='columns')
     return data
+
+@app.route("/HeatMap")
+def heat():
+    mapp = folium.Map(location=[40.730610, -73.935242],zoom_start = 5) 
+
+    # Ensure you're handing it floats
+    pizza_df["latitude"] = pizza_df["latitude"].astype(float)
+    pizza_df["longitude"] = pizza_df["longitude"].astype(float)
+
+    # Filter the DF for rows, then columns, then remove NaNs
+    heat_df = pizza_df
+    heat_df = heat_df[["latitude", "longitude"]]
+    heat_df = heat_df.dropna(axis=0, subset=["latitude","longitude"])
+
+    # List comprehension to make out list of lists
+    heat_data = [[row["latitude"],row["longitude"]] for index, row in heat_df.iterrows()]
+
+    # Plot it on the map
+    HeatMap(heat_data).add_to(mapp)
+
+    # Display the map
+    mapp
+    
+    return render_template("heat.html")
 
 # Run Server
 if __name__ == "__main__":
