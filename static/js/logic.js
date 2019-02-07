@@ -5,27 +5,23 @@
 //   });
  
 
-var esriBase = L.esri.basemapLayer('Imagery')
+var esriBase = L.esri.basemapLayer('Topographic')
 .addTo(myMap);
-var esriLabels = L.esri.basemapLayer('ImageryLabels')
-.addTo(myMap);
+// var esriLabels = L.esri.basemapLayer('ImageryLabels')
+// .addTo(myMap);
 // var esriStreets = L.esri.basemapLayer('ImageryTransportation')
 // .addTo(myMap);
 
-  // // Define a baseMaps object to hold our base layers
-  // var baseMaps = {
-  //   "Base": esriBase,
-  //   "Labels": esriLabels
-  // };
+// var baseMaps = {
+//   "Imagery": esriBase,
+//   "Labels": esriLabels
+// };
 
-  // // Create overlay object to hold our overlay layer
-  // var overlayMaps = {
-  //   Pizza: pizzaLayer
-  // };
+// var overlayMaps = {
+//   "Pizza": city
+// };
 
-  // L.control.layers(baseMaps, overlayMaps, {
-  //   collapsed: false
-  // }).addTo(myMap);
+// L.control.layers(baseMaps, overlayMaps).addTo(map);
 
   // Link to GeoJSON
 var incomeGroups = "../static/js/MHHI-3.json";
@@ -58,8 +54,8 @@ d3.json(incomeGroups, function(data) {
     style: {
       // Border color
       color: "gray",
-      weight: 0,
-      fillOpacity: 0.8
+      weight: 0.15,
+      fillOpacity: 1.0
     },
 
     // Binding a pop-up to each layer
@@ -96,13 +92,13 @@ d3.json(daytimeGroups, function(data) {
       // Border color
       color: "gray",
       weight: 0,
-      fillOpacity: 0.8
+      fillOpacity: 1.0
     },
 
     // Binding a pop-up to each layer
     onEachFeature: function(feature, layer) {
         layer.bindPopup("<br>Block Group:<br>" + feature.properties.NAME + "<br>Daytime Population:<br>" +
-          feature.properties.DPOP_CY)
+          "$" + feature.properties.DPOP_CY)
     .addTo(myMap);
   }
   });
@@ -115,9 +111,9 @@ latitude = [];
 longitude = [];
 
 var pizzaIcon = L.icon({
-  iconUrl: 'https://images.emojiterra.com/mozilla/512px/1f355.png',
-  iconSize: [15, 20],
-  iconAnchor: [0, 15],
+  iconUrl: 'https://cdn0.iconfinder.com/data/icons/location-9/49/restaurant-pin-3-2-512.png',
+  iconSize: [20, 25],
+  iconAnchor: [0, 0],
   popupAnchor: [10, 5],
 });
 
@@ -128,8 +124,8 @@ var pizzaIcon = L.icon({
      var latitude = data.data[i][6];
      var longitude = data.data[i][7];
      var city = [latitude,longitude]
-     var pizzaLayer = L.marker(city, {icon: pizzaIcon})
-       .bindPopup(data.data[i][16] + "<br>Average Price:<br>" + "$" + data.data[i][11])
+     L.marker(city, {icon: pizzaIcon})
+       .bindPopup(data.data[i][16] + "<br>Average Price:<br>" + data.data[i][11])
        .addTo(myMap);
    }
 
