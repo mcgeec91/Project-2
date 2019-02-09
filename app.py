@@ -62,6 +62,11 @@ def Chicago():
     """ Chicago Map"""
     return render_template("chicago.html")
 
+@app.route("/income")
+def Income(): 
+    """ Income Map"""
+    return render_template("income.html")
+
 @app.route("/api/v1.0/Locations")
 def locations():
     """json of all lat/long in dataset"""

@@ -5,10 +5,10 @@
 //   });
  
 
-var esriBase = L.esri.basemapLayer('Topographic')
+var esriBase = L.esri.basemapLayer('Imagery')
 .addTo(myMap);
-// var esriLabels = L.esri.basemapLayer('ImageryLabels')
-// .addTo(myMap);
+var esriLabels = L.esri.basemapLayer('ImageryLabels')
+.addTo(myMap);
 // var esriStreets = L.esri.basemapLayer('ImageryTransportation')
 // .addTo(myMap);
 
@@ -18,7 +18,7 @@ var esriBase = L.esri.basemapLayer('Topographic')
 // };
 
 // var overlayMaps = {
-//   "Pizza": city
+//   "Pizza": pizzaLayers
 // };
 
 // L.control.layers(baseMaps, overlayMaps).addTo(map);
@@ -30,41 +30,41 @@ var densityGroups = "../static/js/PopDensity-3.json";
 var growthGroups = "../static/js/PopGrowth-3.json";
 
 
-// INCOME LAYER
-var income;
+// // INCOME LAYER
+// var income;
 
-// Grab data with d3
-d3.json(incomeGroups, function(data) {
-    console.log(data);
+// // Grab data with d3
+// d3.json(incomeGroups, function(data) {
+//     console.log(data);
 
-  // Create a new choropleth layer
-  income = L.choropleth(data, {
+//   // Create a new choropleth layer
+//   income = L.choropleth(data, {
 
-    // Define what  property in the features to use
-    valueProperty: "MEDHINC_CY",
+//     // Define what  property in the features to use
+//     valueProperty: "MEDHINC_CY",
 
-    // Set color scale
-    scale: ["#09ff00", "#00FF7F", "#006400"],
+//     // Set color scale
+//     scale: ["#09ff00", "#00FF7F", "#006400"],
 
-    // Number of breaks in step range
-    steps: 5,
+//     // Number of breaks in step range
+//     steps: 5,
 
-    // q for quartile, e for equidistant, k for k-means
-    mode: "q",
-    style: {
-      // Border color
-      color: "gray",
-      weight: 0.15,
-      fillOpacity: 1.0
-    },
+//     // q for quartile, e for equidistant, k for k-means
+//     mode: "q",
+//     style: {
+//       // Border color
+//       color: "gray",
+//       weight: 0,
+//       fillOpacity: 0.8
+//     },
 
-    // Binding a pop-up to each layer
-    onEachFeature: function(feature, layer) {
-        layer.bindPopup("<br>Block Group:<br>" + feature.properties.NAME + "<br>Median Household Income:<br>" +
-          "$" + feature.properties.MEDHINC_CY)
-    .addTo(myMap);
-  }
-});
+//     // Binding a pop-up to each layer
+//     onEachFeature: function(feature, layer) {
+//         layer.bindPopup("<br>Block Group:<br>" + feature.properties.NAME + "<br>Median Household Income:<br>" +
+//           "$" + feature.properties.MEDHINC_CY)
+//     .addTo(myMap);
+//   }
+// });
 
 
 // POPULATION LAYER
@@ -92,13 +92,13 @@ d3.json(daytimeGroups, function(data) {
       // Border color
       color: "gray",
       weight: 0,
-      fillOpacity: 1.0
+      fillOpacity: 0.8
     },
 
     // Binding a pop-up to each layer
     onEachFeature: function(feature, layer) {
         layer.bindPopup("<br>Block Group:<br>" + feature.properties.NAME + "<br>Daytime Population:<br>" +
-          "$" + feature.properties.DPOP_CY)
+          feature.properties.DPOP_CY)
     .addTo(myMap);
   }
   });
@@ -111,10 +111,10 @@ latitude = [];
 longitude = [];
 
 var pizzaIcon = L.icon({
-  iconUrl: 'https://cdn0.iconfinder.com/data/icons/location-9/49/restaurant-pin-3-2-512.png',
-  iconSize: [20, 25],
-  iconAnchor: [0, 0],
-  popupAnchor: [10, 5],
+  iconUrl: 'https://images.emojiterra.com/mozilla/512px/1f355.png',
+  iconSize: [15, 20],
+  iconAnchor: [0, 15],
+  popupAnchor: [8, -8],
 });
 
  d3.json(pizza_places, function(data) {
@@ -124,12 +124,12 @@ var pizzaIcon = L.icon({
      var latitude = data.data[i][6];
      var longitude = data.data[i][7];
      var city = [latitude,longitude]
-     L.marker(city, {icon: pizzaIcon})
-       .bindPopup(data.data[i][16] + "<br>Average Price:<br>" + data.data[i][11])
+     pizzaLayers = L.marker(city, {icon: pizzaIcon})
+       .bindPopup(data.data[i][16] + "<br>Average Price:<br>" + "$" + data.data[i][11])
        .addTo(myMap);
    }
 
  });  
 
 });
-});
+// });
