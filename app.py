@@ -99,9 +99,9 @@ def heat():
     HeatMap(heat_data).add_to(mapp)
 
     # Display the map
-    mapp
+    mapp.save("Project-2/templates/heat_map.html")
     
-    return render_template("heat.html")
+    return render_template("heat_map.html")
 
 # Run Server
 if __name__ == "__main__":
