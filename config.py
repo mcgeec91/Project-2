@@ -1,5 +1,5 @@
 dbuser = "root"
-dbpasswd = "$uccEs$1!sql"
+dbpasswd = ""
 dburi = "localhost"
 dbport = 3306
 dbname = "pizza_db"
