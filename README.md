@@ -2,7 +2,7 @@
 
 # Usage
 
-- In order to run this website with its full capabilities, there's a few simple steps that need to be done. 
+- In order to run this website with its full capabilities, there are a few simple steps that need to be done in the specified order. 
 
 # Step 1: Clone repository
 
