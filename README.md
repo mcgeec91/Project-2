@@ -11,7 +11,7 @@
 # Step 2: SQL Database
 
 - Using localhost:3306 in MySQL, run this line "CREATE DATABASE pizza_db;" in a query.
-- Import the Csv Data into MySQL using the table import wizard naming the table "pizza".
+- Import the Csv Data into your "pizza_db" database in MySQL using the table import wizard and naming the table "pizza".
 - Once table is created, The database will be able to be accessed when you call for it. 
 
 # Step 3: Changing config.py
