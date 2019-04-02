@@ -11,7 +11,7 @@
 # Step 2: SQL Database
 
 - Using localhost:3306 in MySQL, run this line "CREATE DATABASE pizza_db;" in a query.
-- Import the Csv Data into your "pizza_db" database in MySQL using the table import wizard and naming the table "pizza".
+- Using any of the CSV's located in the "Pizza_Data" folder, Import the CSV Data into your "pizza_db" database in MySQL using the table import wizard and naming the table "pizza".
 - Once table is created, The database will be able to be accessed when you call for it. 
 
 # Step 3: Changing config.py
@@ -20,4 +20,4 @@
 
 # Step 4: Running app.py
 
-- To launch the website, you will need to run the command "python app.py" while you are in the directory of the repository. I have folium on my environment which is under "source activate 'myenv'". You may need to install the current version of folium in order to get the site to run. "pip install folium" while in your environment should be all that needs to be done to run this website on "http://127.0.0.1:5000/"
+- To launch the website, you will need to run the command "python app.py" while you are in the directory of the repository. I have folium on my environment which can only be utilized after running the command line "source activate 'myenv'". You may need to install the current version of folium in order to get the site to run. Running command "pip install folium" while in your environment should be all that you need to do in order to be able to run this website on "http://127.0.0.1:5000/".
