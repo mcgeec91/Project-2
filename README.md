@@ -20,4 +20,6 @@
 
 # Step 4: Running app.py
 
-- To launch the website, you will need to run the command "python app.py" while you are in the directory of the repository. I have folium on my environment which can only be utilized after running the command line "source activate 'myenv'". You may need to install the current version of folium in order to get the site to run. Running command "pip install folium" while in your environment should be all that you need to do in order to be able to run this website on "http://127.0.0.1:5000/".
+- To launch the website, you will need to run the command "python app.py" while you are in the correct directory of the repository. This error will show up if you are in the wrong directory: "can't open file 'app.py': [Errno 2] No such file or directory".
+
+- I have folium on my environment which can only be utilized after running the command line "source activate 'myenv'". You may need to install the current version of folium in order to get the site to run. Running command "pip install folium" while in your environment should be all that you need to do in order to be able to run this website on "http://127.0.0.1:5000/".
